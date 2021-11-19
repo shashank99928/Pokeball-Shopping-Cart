@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ShowCart from "../../utils/ShowCart";
+import ShowCart from "../../common/ShowCart";
 import CartContext from "../../store/cart-context";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
   flex: {
     display: "flex",
     flexWrap: "wrap-reverse",
-    width: "350px"
-  }
+    width: "350px",
+  },
 }));
 
 const ShowPokeballs = () => {

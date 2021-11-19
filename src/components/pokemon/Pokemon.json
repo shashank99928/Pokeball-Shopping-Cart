@@ -1,0 +1,46 @@
+[
+  {
+    "kanto": [
+      {
+        "name": "Bulbasaur",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+      },
+      {
+        "name": "Charmander",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png "
+      },
+      {
+        "name": "Squirtle",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
+      }
+    ],
+    "Jhoto": [
+      {
+        "name": "Chikorita",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png"
+      },
+      {
+        "name": "Cyndaquil",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/155.png"
+      },
+      {
+        "name": "Totodile",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/158.png"
+      }
+    ],
+    "Hoenn": [
+      {
+        "name": "Treecko",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/252.png"
+      },
+      {
+        "name": "Torchic",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/255.png"
+      },
+      {
+        "name": "Mudkip",
+        "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/258.png"
+      }
+    ]
+  }
+]

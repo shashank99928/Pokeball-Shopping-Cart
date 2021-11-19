@@ -1,28 +1,29 @@
-import ProgressBar from "../../utils/ProgressBar";
-import ParagraphComponent from "../../utils/ParagraphComponent";
-import TitleComponent from "../../utils/TitleComponent";
+import ProgressBar from "../../common/ProgressBar";
+import ParagraphComponent from "../../common/ParagraphComponent";
+import TitleComponent from "../../common/TitleComponent";
 import { InputLabel, Select } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import CartContext from "../../store/cart-context";
 import { useContext } from "react";
+import Slide from "@mui/material/Slide";
 
 import {
   Dialog,
   DialogContent,
   useMediaQuery,
-  FormControl
+  FormControl,
 } from "@material-ui/core";
 import React, { useState, useCallback } from "react";
-import ToggleComponent from "../../utils/ToggleComponent";
-import ButtonComponent from "../../utils/ButtonComponent";
+import ToggleComponent from "../../common/ToggleComponent";
+import ButtonComponent from "../../common/ButtonComponent";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 250
+    minWidth: 250,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   root: {
     display: "flex",
@@ -30,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
       width: theme.spacing(16),
-      height: theme.spacing(16)
-    }
+      height: theme.spacing(16),
+    },
   },
   center: {
     paddingLeft: "50px",
-    paddingTop: "2.3rem"
+    paddingTop: "2.3rem",
   },
   background: {
     paddingTop: "1rem",
@@ -43,15 +44,15 @@ const useStyles = makeStyles((theme) => ({
     margin: "4% auto",
     borderRadius: "1.5%",
     fontFamily: "sans-serif",
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 }));
 
 const typesOfBalls = [
   { id: 1, name: "Poke Balls", qty: 10 },
   { id: 2, name: "Great Ball", qty: 20 },
   { id: 3, name: "Super Potion", qty: 30 },
-  { id: 4, name: "Hyper Potion", qty: 10 }
+  { id: 4, name: "Hyper Potion", qty: 10 },
 ];
 
 function Modal({ onClose }) {
@@ -89,12 +90,10 @@ function Modal({ onClose }) {
       id,
       ballType,
       ballQty,
-      hasBag: hasBag.isBag
+      hasBag: hasBag.isBag,
     });
     onClose();
   };
-
-  console.log("choosenBalls", id, ballType, ballQty, hasBag);
 
   return (
     <div className={classes.center}>
@@ -104,6 +103,8 @@ function Modal({ onClose }) {
         open={true}
         onClose={onClose}
         aria-labelledby="responsive-dialog-title"
+        transition={Slide}
+        transitionDuration={1000}
       >
         <DialogContent>
           <div className={classes.background}>
@@ -114,7 +115,7 @@ function Modal({ onClose }) {
                 Choose Item
               </InputLabel>
               <Select native onChange={(event) => choosenBallsHandler(event)}>
-                <option aria-label="None" value="" />
+                <option name="" value="" />
                 {typesOfBalls.map((balls) => {
                   return (
                     <option

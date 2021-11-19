@@ -1,32 +1,35 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import TitleComponent from "../../utils/TitleComponent";
-import ParagraphComponent from "../../utils/ParagraphComponent";
-import ButtonComponent from "../../utils/ButtonComponent";
+import TitleComponent from "../../common/TitleComponent";
+import ParagraphComponent from "../../common/ParagraphComponent";
+import ButtonComponent from "../../common/ButtonComponent";
 import useInput from "../hooks/use-input";
-import ProgressBar from "../../utils/ProgressBar";
+import ProgressBar from "../../common/ProgressBar";
 import CartContext from "../../store/cart-context";
 import PokemonRegion from "../pokeregion/PokemonRegion";
 import ChoosePokemon from "../pokemon/ChoosePokemon";
 import PokemonShoppingCart from "../cart/PokemonShoppingCart";
 import ShowPokeballs from "../showpokeballs/ShowPokeballs";
 import { useHistory } from "react-router-dom";
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
       width: "16rem",
-      textAlign: "center"
-    }
+      textAlign: "center",
+    },
   },
   marginleft: {
-    marginLeft: "50px"
+    marginLeft: "50px",
+    paddingTop: "2rem",
   },
   paddingTop: {
     paddingTop: "2rem",
-    marginLeft: "50px"
-  }
+    marginLeft: "50px",
+  },
 }));
 
 export default function Form({ onShowCart }) {
@@ -39,7 +42,7 @@ export default function Form({ onShowCart }) {
     isValid: isNameValid,
     valueChangeHandler: fullNameChangeHandler,
     inputBlurHandler: fullNameInputBlurHandler,
-    reset: resetNameInput
+    reset: resetNameInput,
   } = useInput((value) => value.trim() !== "");
 
   const {
@@ -48,7 +51,7 @@ export default function Form({ onShowCart }) {
     isValid: isCodeNameValid,
     valueChangeHandler: codeNameChangeHandler,
     inputBlurHandler: codeNameInputBlurHandler,
-    reset: resetCodeNameInput
+    reset: resetCodeNameInput,
   } = useInput((value) => value.trim() !== "");
 
   let isFormValid = false;
@@ -110,12 +113,13 @@ export default function Form({ onShowCart }) {
 
         <PokemonShoppingCart onShowCart={onShowCart} />
         <ShowPokeballs />
-
-        <ButtonComponent
-          onClick={onSubmitHandler}
-          buttonTitle="START MY JOURNEY"
-          isValid={!isFormValid}
-        />
+        <div style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
+          <ButtonComponent
+            onClick={onSubmitHandler}
+            buttonTitle="START MY JOURNEY"
+            isValid={!isFormValid}
+          />
+        </div>
       </div>
     </form>
   );

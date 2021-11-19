@@ -1,5 +1,5 @@
-import ParagraphComponent from "../../utils/ParagraphComponent";
-import TooltipComponent from "../../utils/TooltipComponent";
+import ParagraphComponent from "../../common/ParagraphComponent";
+import TooltipComponent from "../../common/TooltipComponent";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

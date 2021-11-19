@@ -1,4 +1,4 @@
-import DropdownComponent from "../../utils/DropdownComponent";
+import DropdownComponent from "../../common/DropdownComponent";
 import CartContext from "../../store/cart-context";
 import { useContext } from "react";
 const PokemonRegion = () => {

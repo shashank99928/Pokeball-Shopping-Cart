@@ -1,105 +1,107 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Avatar } from "@material-ui/core";
-import { useState, useContext } from "react";
-import CartContext from "../../store/cart-context";
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar } from '@material-ui/core';
+import { useState, useContext } from 'react';
+import CartContext from '../../store/cart-context';
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import Pokemon from './Pokemon.json';
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    "& > *": {
-      margin: theme.spacing(3)
-    }
+    display: 'flex',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    '& > *': {
+      margin: theme.spacing(3),
+    },
   },
   large: {
-    "&:hover": {
-      backgroundColor: "light-gray",
-      border: "1px solid red",
+    '&:hover': {
+      backgroundColor: 'gray',
+      border: '1px solid red',
       width: theme.spacing(8),
-      height: theme.spacing(8)
-    }
-  }
+      height: theme.spacing(8),
+      cursor: 'ponter',
+    },
+  },
+  styleSelectedPokemom: {
+    backgroundColor: 'gray',
+    border: '1px solid red',
+    width: theme.spacing(8),
+    height: theme.spacing(8),
+    cursor: 'ponter',
+  },
 }));
 
-const Pokemon = [
-  {
-    kanto: [
-      {
-        name: "Bulbasaur",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
-      },
-      {
-        name: "Charmander",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png "
-      },
-      {
-        name: "Squirtle",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
-      }
-    ],
-    Jhoto: [
-      {
-        name: "Chikorita",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png"
-      },
-      {
-        name: "Cyndaquil",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/155.png"
-      },
-      {
-        name: "Totodile",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/158.png"
-      }
-    ],
-    Hoenn: [
-      {
-        name: "Treecko",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/252.png"
-      },
-      {
-        name: "Torchic",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/255.png"
-      },
-      {
-        name: "Mudkip",
-        url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/258.png"
-      }
-    ]
-  }
-];
-
-function ChoosePokemon({ region = "Jhoto" }) {
+function ChoosePokemon({ region = 'Jhoto' }) {
   const classes = useStyles();
   const ctx = useContext(CartContext);
-  console.log("region", region);
+  console.log('region', region);
 
-  const [addStyles, setStyles] = useState(false);
+  const [isSelected, setIsSlected] = useState(null);
 
-  const selectPokemon = (event) => {
-    let myPokemon = { pokemon: "", img: "" };
+  const selectPokemon = (event, isselected) => {
+    let myPokemon = { pokemon: '', img: '' };
+
+    if (isselected === 1) setIsSlected(1);
+    if (isselected === 2) setIsSlected(2);
+    if (isselected === 3) setIsSlected(3);
     myPokemon.pokemon = event.target.alt;
     myPokemon.img = event.target.src;
-    ctx.addPokemon({ pokemonName: event.target.alt, image: event.target.src });
 
+    console.log(event.target, isselected, isSelected, 'event.target');
+
+    ctx.addPokemon({ pokemonName: event.target.alt, image: event.target.src });
     setStyles(true);
   };
 
   //isNaN(distance) ? (distance = 60) : distance;
+  const selectedRegionArray = Pokemon.map((area) => area[region]);
+  const selectPokemonList = selectedRegionArray[0];
+  const selectPokemon1 = selectPokemonList[0];
+  const selectPokemon2 = selectPokemonList[1];
+  const selectPokemon3 = selectPokemonList[2];
 
   return (
     <div className={classes.root}>
-      {Pokemon.map((area) => {
-        return area[region].map((index) => (
-          <Avatar
-            className={addStyles ? classes.large : null}
-            key={index.name}
-            alt={index.name}
-            src={index.url}
-            value={index.url}
-            onMouseEnter={(event) => selectPokemon(event)}
-            id={index.name}
-          />
-        ));
-      })}
+      <Avatar
+        className={`${classes.large} ${
+          isSelected === 1 ? classes.styleSelectedPokemom : ''
+        }`}
+        key={selectPokemon1.name}
+        alt={selectPokemon1.name}
+        src={selectPokemon1.url}
+        value={selectPokemon1.url}
+        onClick={(event, isselected = 2) =>
+          selectPokemon(event, (isselected = 1))
+        }
+        id={selectPokemon1.name}
+      />
+      <Avatar
+        className={`${classes.large}  ${
+          isSelected === 2 ? classes.styleSelectedPokemom : ''
+        }`}
+        key={selectPokemon2.name}
+        alt={selectPokemon2.name}
+        src={selectPokemon2.url}
+        value={selectPokemon2.url}
+        onClick={(event, isselected = 2) =>
+          selectPokemon(event, (isselected = 2))
+        }
+        id={selectPokemon2.name}
+      />
+      <Avatar
+        className={`${classes.large} ${
+          isSelected === 3 ? classes.styleSelectedPokemom : ''
+        }`}
+        key={selectPokemon3.name}
+        alt={selectPokemon3.name}
+        src={selectPokemon3.url}
+        value={selectPokemon3.url}
+        onClick={(event, isselected = 3) =>
+          selectPokemon(event, (isselected = 3))
+        }
+        id={selectPokemon3.name}
+      />
     </div>
   );
 }
