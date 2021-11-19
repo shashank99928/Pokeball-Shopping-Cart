@@ -36,22 +36,17 @@ function ChoosePokemon({ region = 'Jhoto' }) {
   const classes = useStyles();
   const ctx = useContext(CartContext);
   console.log('region', region);
-
   const [isSelected, setIsSlected] = useState(null);
 
   const selectPokemon = (event, isselected) => {
     let myPokemon = { pokemon: '', img: '' };
-
     if (isselected === 1) setIsSlected(1);
     if (isselected === 2) setIsSlected(2);
     if (isselected === 3) setIsSlected(3);
     myPokemon.pokemon = event.target.alt;
     myPokemon.img = event.target.src;
-
     console.log(event.target, isselected, isSelected, 'event.target');
-
     ctx.addPokemon({ pokemonName: event.target.alt, image: event.target.src });
-    setStyles(true);
   };
 
   //isNaN(distance) ? (distance = 60) : distance;
