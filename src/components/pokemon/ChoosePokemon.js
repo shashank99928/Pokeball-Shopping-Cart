@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar } from '@material-ui/core';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import CartContext from '../../store/cart-context';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Pokemon from './Pokemon.json';
@@ -48,6 +48,10 @@ function ChoosePokemon({ region = 'Jhoto' }) {
     console.log(event.target, isselected, isSelected, 'event.target');
     ctx.addPokemon({ pokemonName: event.target.alt, image: event.target.src });
   };
+
+  useEffect(() => {
+    setIsSlected(0);
+  }, [region]);
 
   //isNaN(distance) ? (distance = 60) : distance;
   const selectedRegionArray = Pokemon.map((area) => area[region]);
